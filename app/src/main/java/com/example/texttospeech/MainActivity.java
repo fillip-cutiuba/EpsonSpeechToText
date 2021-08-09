@@ -15,8 +15,6 @@ import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,7 +25,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
     public static final Integer RecordAudioRequestCode = 1;
     private SpeechRecognizer speechRecognizer;
-    private EditText editText;
+    private TextView textView;
     private ImageView micButton;
 
     @Override
@@ -38,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             checkPermission();
         }
 
-        editText = findViewById(R.id.text);
+        textView = findViewById(R.id.text);
         micButton = findViewById(R.id.button);
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
 
@@ -54,8 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onBeginningOfSpeech() {
-                editText.setText("");
-                editText.setHint("Listening...");
+                //textView.setText("");
+                //textView.setHint("Listening...");
             }
 
             @Override
@@ -70,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onEndOfSpeech() {
-
+                speechRecognizer.startListening(speechRecognizerIntent);
             }
 
             @Override
@@ -82,7 +80,9 @@ public class MainActivity extends AppCompatActivity {
             public void onResults(Bundle bundle) {
                 micButton.setImageResource(R.drawable.ic_mic_black_off);
                 ArrayList<String> data = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-                    editText.setText(data.get(0));
+                    textView.setText(data.get(0));
+
+                speechRecognizer.startListening(speechRecognizerIntent);
             }
 
             @Override
@@ -96,7 +96,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        micButton.setOnTouchListener(new View.OnTouchListener() {
+        speechRecognizer.startListening(speechRecognizerIntent);
+
+
+        /*micButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (motionEvent.getAction() == MotionEvent.ACTION_UP){
@@ -108,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return false;
             }
-        });
+        });*/
 
 
     }

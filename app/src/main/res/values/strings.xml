@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SpeechToText</string>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
 </resources>
