@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onBufferReceived(byte[] bytes) {
-                debug.setText("onBufferRecieved");
+                debug.setText("onBufferReceived");
             }
 
             @Override
