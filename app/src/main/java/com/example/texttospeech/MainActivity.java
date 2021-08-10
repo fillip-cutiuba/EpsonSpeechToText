@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     public static final Integer RecordAudioRequestCode = 1;
     private SpeechRecognizer speechRecognizer;
     private TextView textView;
+    private TextView debug;
     private ImageView micButton;
 
     @Override
@@ -37,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         textView = findViewById(R.id.text);
+        debug = findViewById(R.id.debug);
+
         micButton = findViewById(R.id.button);
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
 
@@ -47,52 +50,57 @@ public class MainActivity extends AppCompatActivity {
         speechRecognizer.setRecognitionListener(new RecognitionListener() {
             @Override
             public void onReadyForSpeech(Bundle bundle) {
-
+                debug.setText("onReadyForSpeech");
             }
 
             @Override
             public void onBeginningOfSpeech() {
                 //textView.setText("");
                 //textView.setHint("Listening...");
+                debug.setText("onBeginningOfSpeech");
+
             }
 
             @Override
             public void onRmsChanged(float v) {
-
+                debug.setText("onRmsChanged");
             }
 
             @Override
             public void onBufferReceived(byte[] bytes) {
-
+                debug.setText("onBufferRecieved");
             }
 
             @Override
             public void onEndOfSpeech() {
-                speechRecognizer.startListening(speechRecognizerIntent);
+                debug.setText("onEndOfSpeech");
             }
 
             @Override
             public void onError(int i) {
-
+                debug.setText("onError");
+                speechRecognizer.startListening(speechRecognizerIntent);
             }
 
             @Override
             public void onResults(Bundle bundle) {
                 micButton.setImageResource(R.drawable.ic_mic_black_off);
                 ArrayList<String> data = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-                    textView.setText(data.get(0));
+                textView.setText(data.get(0));
 
                 speechRecognizer.startListening(speechRecognizerIntent);
+                debug.setText("onResults");
+
             }
 
             @Override
             public void onPartialResults(Bundle bundle) {
-
+                debug.setText("onPartialResults");
             }
 
             @Override
             public void onEvent(int i, Bundle bundle) {
-
+                debug.setText("onEvent");
             }
         });
 

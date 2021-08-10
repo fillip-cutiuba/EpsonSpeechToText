@@ -39,6 +39,13 @@
             android:textColor="@color/white"
             android:textSize="35sp" />
 
+        <TextView
+            android:id="@+id/debug"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="debug"
+            android:textSize="35sp"/>
+
     </RelativeLayout>
 
 
