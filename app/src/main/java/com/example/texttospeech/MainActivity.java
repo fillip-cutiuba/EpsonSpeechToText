@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         speechRecognizer.startListening(speechRecognizerIntent);
 
 
-        /*micButton.setOnTouchListener(new View.OnTouchListener() {
+        /* micButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (motionEvent.getAction() == MotionEvent.ACTION_UP){
