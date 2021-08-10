@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SpeechToText</string>
+    <string name="app_name">EpsonSpeechToText</string>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
 </resources>
